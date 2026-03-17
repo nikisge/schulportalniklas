@@ -94,6 +94,25 @@ const TABLE_COLUMNS = [
   { key: "lerngruppe", label: "Lerngruppe" },
 ];
 
+// Sort entries by Stunde (numeric order)
+function sortByStunde(entries) {
+  const stundeOrder = (s) => {
+    const num = parseInt(s.replace(/\s/g, ""));
+    return isNaN(num) ? 99 : num;
+  };
+  return [...entries].sort((a, b) => stundeOrder(a.stunde) - stundeOrder(b.stunde));
+}
+
+function mergeData(custom) {
+  const merged = { ...DEFAULT_DATA };
+  for (const key of ["day0", "day1", "day2"]) {
+    if (custom[key] && custom[key].length > 0) {
+      merged[key] = sortByStunde([...DEFAULT_DATA[key], ...custom[key]]);
+    }
+  }
+  return merged;
+}
+
 export default function Home() {
   const [activeDay, setActiveDay] = useState(0);
   const [data, setData] = useState(DEFAULT_DATA);
@@ -109,14 +128,7 @@ export default function Home() {
     try {
       const stored = localStorage.getItem("schulportal_custom_entries");
       if (stored) {
-        const custom = JSON.parse(stored);
-        const merged = { ...DEFAULT_DATA };
-        for (const key of ["day0", "day1", "day2"]) {
-          if (custom[key] && custom[key].length > 0) {
-            merged[key] = [...DEFAULT_DATA[key], ...custom[key]];
-          }
-        }
-        setData(merged);
+        setData(mergeData(JSON.parse(stored)));
       }
     } catch (e) {}
   }, []);
@@ -126,13 +138,7 @@ export default function Home() {
       if (e.key === "schulportal_custom_entries") {
         try {
           const custom = e.newValue ? JSON.parse(e.newValue) : { day0: [], day1: [], day2: [] };
-          const merged = { ...DEFAULT_DATA };
-          for (const key of ["day0", "day1", "day2"]) {
-            if (custom[key] && custom[key].length > 0) {
-              merged[key] = [...DEFAULT_DATA[key], ...custom[key]];
-            }
-          }
-          setData(merged);
+          setData(mergeData(custom));
         } catch (e) {}
       }
     }
