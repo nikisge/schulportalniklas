@@ -36,56 +36,51 @@ a:hover {
 }
 .navbar-first .brand-text {
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
-  padding: 10px 0;
+  padding: 12px 0;
+  position: relative;
+  left: -10px;
 }
 .navbar-first .brand-text sup {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-weight: 600;
 }
 
 /* ======== SCHOOL HEADER ======== */
 #headlogo {
   background-color: #fff;
-  padding: 15px 0;
+  padding: 15px 0 20px;
   border-bottom: 1px solid #eee;
 }
 .head-inner {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 10px;
 }
 .school-logo-img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: #6c757d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 80px;
   flex-shrink: 0;
-}
-.school-logo-img svg {
-  width: 45px;
-  height: 45px;
-  fill: white;
+  padding-right: 10px;
 }
 .headtitle {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 300;
   margin: 0 0 2px 0;
   color: #333;
+  line-height: 1.2;
 }
 .headtitle small {
-  font-size: 18px;
+  font-size: 22px;
   color: #777;
+  font-weight: 300;
 }
 .head-subtitle {
   font-size: 12px;
   color: #999;
+  margin-top: 2px;
 }
 
 /* ======== MAIN NAVIGATION ======== */
@@ -134,7 +129,7 @@ a:hover {
 }
 .nav-left li a, .nav-right li > a {
   color: #ddd;
-  padding: 12px 14px;
+  padding: 13px 14px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -210,9 +205,10 @@ a:hover {
   padding: 20px 0 40px;
 }
 #content h1 {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 300;
   margin: 10px 0 20px;
+  color: #333;
 }
 
 /* ======== PANELS ======== */
@@ -246,7 +242,7 @@ a:hover {
   padding: 15px;
 }
 
-/* ======== DAY BUTTONS ======== */
+/* ======== BUTTONS ======== */
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -271,7 +267,6 @@ a:hover {
 .btn-default { color: #333; background: #fff; border-color: #ccc; }
 .btn-default:hover { background: #e6e6e6; }
 .btn-sm { padding: 4px 8px; font-size: 12px; }
-.btn-block { display: block; width: 100%; }
 
 /* Badges & Labels */
 .badge {
@@ -302,14 +297,35 @@ a:hover {
 .label-default { background: #777; }
 .badge.woche { background: #5bc0de; font-weight: 600; font-size: 11px; }
 
-/* ======== VERTRETUNGSPLAN TABLE ======== */
+/* ======== TABLE TOOLBAR ======== */
 .table-toolbar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 10px;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
+}
+.toolbar-search {
+  order: 1;
+}
+.toolbar-buttons {
+  order: 2;
+  display: flex;
+  gap: 0;
+}
+.toolbar-btn {
+  border-radius: 0;
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 13px;
+}
+.toolbar-btn:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.toolbar-btn:last-child {
+  border-radius: 0 4px 4px 0;
+  margin-left: -1px;
 }
 .search-input {
   padding: 6px 12px;
@@ -325,13 +341,31 @@ a:hover {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
 }
 
+/* ======== VERTRETUNGSPLAN TABLE ======== */
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+/* Custom scrollbar to match original blue scrollbar */
+.table-responsive::-webkit-scrollbar {
+  height: 10px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #5bc0de;
+  border-radius: 5px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #46b8da;
+}
+
 table.vplan-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 900px;
 }
 table.vplan-table th {
   background: #f9f9f9;
@@ -342,31 +376,65 @@ table.vplan-table th {
   font-size: 13px;
   color: #555;
   white-space: nowrap;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
 }
+/* Sort indicator arrows matching original bootstrap-table */
+table.vplan-table th .th-inner {
+  display: inline-block;
+  position: relative;
+  padding-right: 18px;
+}
+table.vplan-table th .th-inner::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #ccc;
+  margin-top: 4px;
+}
+table.vplan-table th .th-inner::before {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #ccc;
+  margin-top: -4px;
+}
+
 table.vplan-table td {
   padding: 8px;
   border-top: 1px solid #ddd;
   font-size: 13px;
   vertical-align: middle;
 }
-table.vplan-table tbody tr:nth-child(odd) { background: #f9f9f9; }
-table.vplan-table tbody tr:nth-child(even) { background: #fff; }
+table.vplan-table.table-striped tbody tr:nth-child(odd) { background: #f9f9f9; }
+table.vplan-table.table-striped tbody tr:nth-child(even) { background: #fff; }
 table.vplan-table tbody tr:hover { background: #f0f0f0; }
-table.vplan-table del { color: #999; }
+table.vplan-table del { color: #999; text-decoration: line-through; }
 
 .pagination-info {
   font-size: 13px;
   color: #777;
-  margin-top: 10px;
 }
 .update-time {
-  text-align: right;
-  font-style: italic;
   font-size: 13px;
   color: #777;
-  margin-top: 10px;
+}
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 /* ======== FOOTER ======== */
@@ -394,7 +462,6 @@ table.vplan-table del { color: #999; }
 }
 .footer-links a {
   color: #337ab7;
-  margin-left: 15px;
 }
 
 /* ======== ADMIN PAGE ======== */
@@ -435,7 +502,6 @@ table.vplan-table del { color: #999; }
 select.form-control {
   height: 38px;
 }
-
 .admin-entry {
   background: #fff;
   border: 1px solid #ddd;
@@ -455,7 +521,6 @@ select.form-control {
 .admin-entry-info strong {
   color: #337ab7;
 }
-
 .alert {
   padding: 10px 15px;
   border-radius: 4px;
@@ -472,7 +537,7 @@ select.form-control {
   color: #31708f;
 }
 
-/* ======== MOBILE ======== */
+/* ======== MOBILE RESPONSIVE ======== */
 @media (max-width: 767px) {
   .navbar-first { display: none; }
   #headlogo { display: none; }
@@ -528,10 +593,17 @@ select.form-control {
     text-align: left;
   }
 
-  #content h1 { font-size: 22px; }
+  #content h1 { font-size: 24px; }
 
+  .table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .search-input { width: 100%; }
 
+  table.vplan-table {
+    min-width: 700px;
+  }
   table.vplan-table th, table.vplan-table td {
     padding: 5px 4px;
     font-size: 11px;
