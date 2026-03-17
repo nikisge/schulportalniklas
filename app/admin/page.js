@@ -30,33 +30,69 @@ const STUNDEN_OPTIONS = ["1 - 2", "3 - 4", "5 - 6", "8 - 9", "10 - 11"];
 const ART_OPTIONS = ["Entfall", "Raum-Vtr.", "Unterricht geändert", "Vertretung"];
 const KLASSE_OPTIONS = ["Q1/2", "Q3/4", "E1/2", "5a", "5b", "6a", "6b", "7a", "7b", "8a", "8b", "9a", "9b"];
 
+// Echte Lehrkräfte aus dem Q2-He Stundenplan
 const EXAMPLE_LEHRKRAEFTE = [
-  "Mi", "Shü", "Sef", "Sgl", "Weh", "Htl", "Nev", "Gü", "Ed", "Bhn", "Hoh",
-  "Mar", "Su", "Mü", "Kue", "Scm", "Geb", "Brn", "Fis", "Kel", "Wgn", "Hfm"
+  "Bhn", "Bkr", "Bl", "Bns", "Boe", "Bra", "Bu", "Buk", "Can", "Co",
+  "Dke", "Dp", "Dtr", "Ed", "Eis", "Ens", "Epp", "Ez", "Fmt", "Fri",
+  "Fu", "Geb", "Ger", "Gü", "Har", "Hau", "He", "Hmn", "Hoh", "Htl",
+  "Hzg", "Kgm", "Kk", "Kmn", "Kue", "Lbt", "Lin", "Mar", "Mi", "Mkn",
+  "Mr", "Mü", "Mun", "Ne", "Nev", "Ng", "Ohl", "Opp", "Ran", "Roe",
+  "Roh", "Scm", "Sef", "Sgl", "Sgf", "Sho", "Slt", "Sm", "Smi", "Snk",
+  "So", "Spi", "Str", "Su", "SW", "Tak", "Tyl", "Wah", "Weg", "Weh",
+  "Wei", "Wer", "Wes", "Wf", "Wke", "Wl", "Wof", "Zal"
 ];
 
+// Echte Kurse aus dem Q2-He Stundenplan
 const EXAMPLE_FAECHER = [
-  "G11", "G12", "G15", "PoWi13", "PoWi15", "PoWi16", "PoWi05",
-  "Eth13", "DSp11", "Mu11", "M01", "M15", "F15",
-  "BioNW205", "BioNW216", "Q1Ch-NW2-14", "PhNW205", "PhNW212",
-  "D11", "E13", "Ku12", "Sp14", "L11", "Inf12", "Ek11"
+  "BioNW101", "BioNW112", "BioNW114", "BioNW205", "BioNW216", "BioNW311", "BioNW317",
+  "ChNW101", "ChNW105", "ChNW115", "ChNW313",
+  "D01", "D12", "D13", "D14", "D15", "D16", "D17", "D18",
+  "DSP12", "DSp11",
+  "E01", "E02", "E05", "E06", "E07", "E11", "E12", "E13", "E14",
+  "Eth11", "Eth12", "Eth13", "Eth14",
+  "F05", "F15",
+  "G01", "G11", "G12", "G13", "G14", "G15", "G16", "G17", "Gbili10",
+  "Geo-bili10", "Geo21",
+  "Info20",
+  "Ku01", "Ku11", "Ku12", "Ku13",
+  "L05", "L11",
+  "M01", "M05", "M11", "M12", "M13", "M14", "M15", "M17",
+  "Mu01", "Mu11", "Mu12",
+  "Philo10",
+  "PhNW117", "PhNW205", "PhNW212",
+  "PoWi01", "PoWi05", "PoWi06", "PoWi12", "PoWi13", "PoWi14", "PoWi15", "PoWi16", "PoWibili10",
+  "Q1Ch-NW2-14", "Q1Ph-NW3-14",
+  "Rev11", "Rev12", "Rev13", "Rka11", "Rka12",
+  "Spa05", "Spa12",
+  "Spo07", "Spo11", "Spo12", "Spo13", "Spo14", "Spo15", "Spo16", "Spo17"
 ];
 
+// Echte Räume aus dem Q2-He Stundenplan
 const EXAMPLE_RAEUME = [
-  "D314", "D306", "C114", "D204", "D303", "D213", "B209",
-  "C116", "C106", "C001", "D305", "C104", "D510", "D512",
-  "D504", "D402", "D404", "Aula", "D210", "D312", "A105"
+  "Aula", "B007", "B009", "B010", "B104", "B105", "B108", "B109", "B110",
+  "B204", "B207", "B208", "B209",
+  "C001", "C008", "C014", "C015", "C016", "C101", "C104", "C105", "C106",
+  "C114", "C116", "C119",
+  "D111", "D114", "D115", "D116", "D204", "D207", "D209", "D211", "D212",
+  "D213", "D214", "D303", "D304", "D305", "D306", "D307", "D308", "D309",
+  "D313", "D314", "D315", "D316",
+  "D402", "D404", "D405", "D407", "D408", "D410", "D412",
+  "D503", "D504", "D508", "D510", "D512",
+  "E007", "E021", "E110",
+  "FRÖH2", "HTH1", "HTH2"
 ];
 
 const EXAMPLE_HINWEISE = [
   "; Entfall",
   "; Verlegung von Schneesportwoche II",
   "; Verlegung von Entfall für Lehrer",
-  "Klausur Ph",
   "; Verlegung von Generalprobe Streichmusiker",
+  "Klausur Ph",
   "; Klausur",
   "; Studientag",
   "; Konferenz",
+  "; Fortbildung",
+  "; Schulveranstaltung",
 ];
 
 export default function AdminPage() {
